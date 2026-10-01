@@ -1,5 +1,6 @@
 import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
+import { Link } from 'expo-router';
+import { Platform, Pressable, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AnimatedIcon } from '@/components/animated-icon';
@@ -64,6 +65,14 @@ export default function HomeScreen() {
               Roll No: 23I-2516
             </ThemedText>
           </ThemedView>
+
+          <Link href="/explore" asChild>
+            <Pressable style={({ pressed }) => pressed && styles.pressed}>
+              <ThemedView type="backgroundElement" style={styles.exploreButton}>
+                <ThemedText type="link">Explore Products</ThemedText>
+              </ThemedView>
+            </Pressable>
+          </Link>
         </ThemedView>
 
         <ThemedText type="code" style={styles.code}>
@@ -148,6 +157,19 @@ const styles = StyleSheet.create({
 
   rollNumber: {
     textAlign: 'center',
+  },
+
+  exploreButton: {
+    flexDirection: 'row',
+    paddingHorizontal: Spacing.four,
+    paddingVertical: Spacing.two,
+    borderRadius: Spacing.five,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  pressed: {
+    opacity: 0.7,
   },
 
   code: {
